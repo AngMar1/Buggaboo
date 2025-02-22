@@ -6,41 +6,48 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import java.util.List;
 
 public class CartPage {
-    WebDriver driver;
-
-    // Locators
+    private WebDriver driver;
     private By cartSummary = By.cssSelector(".cart-summary");
     private By checkoutButton = By.cssSelector(".checkout-button");
     private By emptyCartMessage = By.xpath("//*[contains(text(), 'Your shopping cart is empty')]");
+    private By exploreStrollersButton = By.xpath("//span[@class='button_label' and text()='Explore strollers']");
+    private By cartItemTitle = By.cssSelector(".cart-item-title");
 
     public CartPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    // Check if the cart is empty
-    public boolean isCartEmpty() {
+    public boolean isCartPageVisible() {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            WebElement emptyMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(emptyCartMessage));
-            return emptyMessage.isDisplayed();
+            wait.until(ExpectedConditions.or(
+                    ExpectedConditions.visibilityOfElementLocated(cartSummary),
+                    ExpectedConditions.visibilityOfElementLocated(checkoutButton),
+                    ExpectedConditions.visibilityOfElementLocated(emptyCartMessage),
+                    ExpectedConditions.visibilityOfElementLocated(exploreStrollersButton)
+            ));
+            return true;
         } catch (Exception e) {
-            return false; // If the message is not found, cart is not empty
+            return false;
         }
     }
 
-    // Wait for cart summary and check if displayed
-    public boolean isCartSummaryDisplayed() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement summary = wait.until(ExpectedConditions.visibilityOfElementLocated(cartSummary));
-        return summary.isDisplayed();
-    }
-
-    // Wait for checkout button and check if displayed
-    public boolean isCheckoutButtonDisplayed() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement button = wait.until(ExpectedConditions.visibilityOfElementLocated(checkoutButton));
-        return button.isDisplayed();
+    public boolean isProductPresent(String productName) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(cartItemTitle));
+            List<WebElement> items = driver.findElements(cartItemTitle);
+            for (WebElement item : items) {
+                if (item.getText().contains(productName)) {
+                    return true;
+                }
+            }
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
