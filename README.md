@@ -45,17 +45,18 @@ Then I should be logged in successfully
 
 ## Project Structure
 Buggaboo/
-│-- src/
+│
+├── src/
 │   ├── main/
 │   │   ├── java/
-│   │   │   ├── pageobjects/          # Page Object Models (represent UI interactions)
+│   │   │   └── pageobjects/          # Page Object Models (represent UI interactions)
 │   ├── test/
 │   │   ├── java/
 │   │   │   ├── stepdefinitions/      # Cucumber Step Definitions (test steps)
-│   │   │   ├── runners/              # Cucumber Test Runner (test execution)
-│-- pom.xml                            # Maven dependencies configuration
-│-- README.md                          # Project documentation
-
+│   │   │   └── runners/              # Cucumber Test Runner (test execution)
+│
+├── pom.xml                           # Maven dependencies configuration
+├── README.md                         # Project documentation
 
 ## Setup Instructions
 ### Prerequisites
