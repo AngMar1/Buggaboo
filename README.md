@@ -62,9 +62,13 @@ Buggaboo/
 - Install a **web driver** (e.g., ChromeDriver for Chrome, GeckoDriver for Firefox).
 
 ### Clone the Repository
+
+To clone the repository, run the following commands:
+
 ```sh
 git clone https://github.com/AngMar1/Buggaboo.git
 cd Buggaboo
+
 
 ### Install Dependencies
 Run the following command to install dependencies:
