@@ -68,7 +68,7 @@ To clone the repository, run the following commands:
 ```sh
 git clone https://github.com/AngMar1/Buggaboo.git
 cd Buggaboo
-
+```
 
 ### Install Dependencies
 Run the following command to install dependencies:
