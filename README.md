@@ -47,11 +47,11 @@ Then I should be logged in successfully
 
 Buggaboo/
 └── src/
-└── main/
-└── java/
-├── pageobjects/       # Page Object Models (represent UI interactions)
-├── stepdefinitions/   # Cucumber Step Definitions (test steps)
-└── runners/           # Cucumber Test Runner (test execution)
+   └── main/
+      └── java/
+           ├── pageobjects/       # Page Object Models (represent UI interactions)
+           ├── stepdefinitions/   # Cucumber Step Definitions (test steps)
+           └── runners/           # Cucumber Test Runner (test execution)
 pom.xml         # Maven dependencies configuration
 README.md       # Project documentation
 
