@@ -15,7 +15,7 @@ Given I am on the homepage
 When I close the cookie pop-up by clicking the accept only functional button
 And I click on the cart icon
 Then I should be navigated to the cart page
-
+```
 **Scenario 2: Add an In-Stock Stroller to Cart and Verify Cart Modal**
 
 ```gherkin
@@ -25,14 +25,15 @@ When I check if the first stroller is in stock and click "View more"
 And I should be on the product detail page
 And I scroll down and click "Add to cart"
 Then I should see "Added to your shopping cart" in the modal
-  #### Feature: Login Page
+```  
+#### Feature: Login Page
 **Scenario 3: Successful login**
  
 ```gherkin 
 Given I am on the login page
 When I enter my credentials
 Then I should be logged in successfully
-  
+``` 
   
   
 ## Tech Stack
