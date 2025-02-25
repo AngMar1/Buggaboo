@@ -25,7 +25,7 @@ When I check if the first stroller is in stock and click "View more"
 And I should be on the product detail page
 And I scroll down and click "Add to cart"
 Then I should see "Added to your shopping cart" in the modal
-  
+  #### Feature: Login Page
 **Scenario 3: Successful login**
   
 Given I am on the login page
