@@ -6,7 +6,7 @@ This is a test automation framework built using **Java, Selenium WebDriver, Cucu
 Feature: Cart Page
 Scenario 1: Close Cookie Pop-up and Click on Cart
 gherkin
-
+Copy
 Given I am on the homepage
 When I close the cookie pop-up by clicking the accept only functional button
 And I click on the cart icon
@@ -14,7 +14,7 @@ Then I should be navigated to the cart page
 Purpose: Verifies that the user can close the cookie pop-up and navigate to the cart page.
 Scenario 2: Add an In-Stock Stroller to Cart and Verify Cart Modal
 gherkin
-
+Copy
 Given I am on the homepage
 And I navigate to the strollers shop page
 When I check if the first stroller is in stock and click "View more"
@@ -25,7 +25,7 @@ Purpose: Verifies that an in-stock stroller can be added to the cart and confirm
 Feature: User Login
 Scenario: User Successfully Logs In and Logs Out
 gherkin
-
+Copy
 Given I am on the login page
 When I enter my credentials
 Then I should be logged in successfully
