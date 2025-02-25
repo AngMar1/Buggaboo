@@ -27,7 +27,8 @@ And I scroll down and click "Add to cart"
 Then I should see "Added to your shopping cart" in the modal
   #### Feature: Login Page
 **Scenario 3: Successful login**
-  
+ 
+```gherkin 
 Given I am on the login page
 When I enter my credentials
 Then I should be logged in successfully
