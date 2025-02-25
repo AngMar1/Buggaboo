@@ -42,19 +42,18 @@ Then I should be logged in successfully
 - **JUnit**: Test runner for executing Cucumber tests.
 
 ## Project Structure
-```
 Buggaboo/
 │-- src/
 │   ├── main/
 │   │   ├── java/
-│   │   │   ├── pageobjects/          # Page Object Models
+│   │   │   ├── pageobjects/          # Page Object Models (represent UI interactions)
 │   ├── test/
 │   │   ├── java/
-│   │   │   ├── stepdefinitions/  # Cucumber Step Definitions
-│   │   │   ├── runners/         # Cucumber Test Runner
-│-- pom.xml  # Maven dependencies
-│-- README.md
-```
+│   │   │   ├── stepdefinitions/      # Cucumber Step Definitions (test steps)
+│   │   │   ├── runners/              # Cucumber Test Runner (test execution)
+│-- pom.xml                            # Maven dependencies configuration
+│-- README.md                          # Project documentation
+
 
 ## Setup Instructions
 ### Prerequisites
