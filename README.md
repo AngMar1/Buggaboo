@@ -44,6 +44,9 @@ Then I should be logged in successfully
 - **JUnit**: Test runner for executing Cucumber tests.
 
 ## Project Structure
+
+The project structure is organized as follows:
+
 Buggaboo/
 │
 ├── src/
