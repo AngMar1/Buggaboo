@@ -1,19 +1,16 @@
 package stepdefinitions;
 
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.When;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.And;
+import io.cucumber.java.en.*;
 import org.junit.Assert;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pageobjects.HomePage;
 import pageobjects.CartPage;
 import pageobjects.StrollerShopPage;
 import pageobjects.ProductDetailPage;
 
 public class CartStepDefinitions {
+
+    // No need to create a new driver here – we'll use the one from Hooks
     private WebDriver driver;
     private HomePage homePage;
     private StrollerShopPage strollerShopPage;
@@ -21,10 +18,8 @@ public class CartStepDefinitions {
 
     @Given("I am on the homepage")
     public void iAmOnTheHomepage() {
-        driver = new ChromeDriver();
-        // Set to a desktop viewport to ensure the desktop layout loads
-        driver.manage().window().setSize(new Dimension(1920, 1080));
-        driver.manage().window().maximize();
+        // Use the driver created in Hooks
+        driver = Hooks.driver;
         driver.get("https://www.bugaboo.com/us-en");
         homePage = new HomePage(driver);
         homePage.closeCookiePopupIfPresent();
@@ -39,24 +34,20 @@ public class CartStepDefinitions {
     public void iShouldSeeTheCartPage() {
         CartPage cartPage = new CartPage(driver);
         Assert.assertTrue("Cart page should be visible", cartPage.isCartPageVisible());
-        driver.quit();
+        // No driver.quit() here – it will be handled by the @After hook in Hooks.java
     }
-
-    // New scenario steps:
 
     @And("I navigate to the strollers shop page")
     public void iNavigateToTheStrollersShopPage() {
-        // Navigate to the strollers shop page
         driver.get("https://www.bugaboo.com/us-en/strollers/shop-strollers/");
-        // First, close the cookie popup on the strollers page
+        // Close the cookie popup again if needed
         homePage.closeCookiePopupIfPresent();
         strollerShopPage = new StrollerShopPage(driver);
     }
 
     @When("I check if the first stroller is in stock and click {string}")
     public void iCheckIfTheFirstStrollerIsInStockAndClickViewMore(String viewMoreText) {
-        // This method scrolls the first product card into view, checks if it's in stock,
-        // and if so clicks the "View more" button within that card.
+        // This method handles scrolling, checking stock, and clicking the View More button
         strollerShopPage.checkFirstStrollerInStockAndClickViewMore();
     }
 
@@ -74,8 +65,6 @@ public class CartStepDefinitions {
 
     @Then("I should see {string} in the modal")
     public void iShouldSeeInTheModal(String expectedModalText) {
-        Assert.assertTrue("Expected modal text not found",
-                productDetailPage.isTextInCartModal(expectedModalText));
-        driver.quit();
+        Assert.assertTrue("Expected modal text not found", productDetailPage.isTextInCartModal(expectedModalText));
     }
 }
