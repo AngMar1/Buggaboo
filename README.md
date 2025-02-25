@@ -44,7 +44,7 @@ Then I should be logged in successfully
 - **JUnit**: Test runner for executing Cucumber tests.
 
 ## Project Structure
-
+```text
 Buggaboo/
 └── src/
    └── main/
@@ -54,7 +54,7 @@ Buggaboo/
            └── runners/           # Cucumber Test Runner (test execution)
 pom.xml         # Maven dependencies configuration
 README.md       # Project documentation
-
+```
 
 ## Setup Instructions
 ### Prerequisites
