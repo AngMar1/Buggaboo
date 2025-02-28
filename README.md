@@ -26,6 +26,15 @@ And I should be on the product detail page
 And I scroll down and click "Add to cart"
 Then I should see "Added to your shopping cart" in the modal
 ```  
+**Scenario 3: Sort by most popular**
+```gherkin
+Scenario: Sort by most popular
+Given I am on the homepage
+And I navigate to the strollers shop page
+When I sort the strollers by most popular
+Then I should see most popular option on dropdown
+```
+
 #### Feature: Login Page
 **Scenario 3: Successful login**
  
