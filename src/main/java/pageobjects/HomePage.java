@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
 public class HomePage {
@@ -17,6 +18,7 @@ public class HomePage {
         this.driver = driver;
     }
 
+    // Close cookie popup if present
     public void closeCookiePopupIfPresent() {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
@@ -31,8 +33,9 @@ public class HomePage {
         }
     }
 
+    // Click on the cart icon and navigate to the cart page
     public void clickCart() {
-        closeCookiePopupIfPresent();
+        closeCookiePopupIfPresent();  // Ensure cookies are handled before clicking cart
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement cart = wait.until(ExpectedConditions.elementToBeClickable(cartDiv));
         cart.click();

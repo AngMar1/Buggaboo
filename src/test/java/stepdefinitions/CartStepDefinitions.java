@@ -2,15 +2,12 @@ package stepdefinitions;
 
 import io.cucumber.java.en.*;
 import org.junit.Assert;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import pageobjects.HomePage;
-import pageobjects.CartPage;
-import pageobjects.StrollerShopPage;
-import pageobjects.ProductDetailPage;
+import pageobjects.*;
 
 public class CartStepDefinitions {
 
-    // No need to create a new driver here – we'll use the one from Hooks
     private WebDriver driver;
     private HomePage homePage;
     private StrollerShopPage strollerShopPage;
@@ -18,36 +15,34 @@ public class CartStepDefinitions {
 
     @Given("I am on the homepage")
     public void iAmOnTheHomepage() {
-        // Use the driver created in Hooks
         driver = Hooks.driver;
         driver.get("https://www.bugaboo.com/us-en");
         homePage = new HomePage(driver);
         homePage.closeCookiePopupIfPresent();
     }
 
-    @When("I click on the cart")
-    public void iClickOnTheCart() {
-        homePage.clickCart();
-    }
-
-    @Then("I should see the cart page")
-    public void iShouldSeeTheCartPage() {
-        CartPage cartPage = new CartPage(driver);
-        Assert.assertTrue("Cart page should be visible", cartPage.isCartPageVisible());
-        // No driver.quit() here – it will be handled by the @After hook in Hooks.java
-    }
-
     @And("I navigate to the strollers shop page")
     public void iNavigateToTheStrollersShopPage() {
         driver.get("https://www.bugaboo.com/us-en/strollers/shop-strollers/");
-        // Close the cookie popup again if needed
+        driver.manage().window().setSize(new Dimension(1920, 1080));
+        driver.manage().window().maximize();
         homePage.closeCookiePopupIfPresent();
         strollerShopPage = new StrollerShopPage(driver);
     }
 
+    @When("I sort the strollers by most popular")
+    public void iSortByMostPopular() {
+        strollerShopPage.sortByMostPopular();
+    }
+
+    @Then("I should see most popular option on dropdown")
+    public void iShouldSeeMostPopularOption() {
+        Assert.assertTrue("Most Popular option not selected in dropdown", strollerShopPage.isMostPopularOptionSelected());
+    }
+
+    // Scenario: Add an in-stock stroller by viewing more and verify cart modal
     @When("I check if the first stroller is in stock and click {string}")
     public void iCheckIfTheFirstStrollerIsInStockAndClickViewMore(String viewMoreText) {
-        // This method handles scrolling, checking stock, and clicking the View More button
         strollerShopPage.checkFirstStrollerInStockAndClickViewMore();
     }
 
@@ -66,5 +61,17 @@ public class CartStepDefinitions {
     @Then("I should see {string} in the modal")
     public void iShouldSeeInTheModal(String expectedModalText) {
         Assert.assertTrue("Expected modal text not found", productDetailPage.isTextInCartModal(expectedModalText));
+    }
+
+    // Scenario: Close popup and click on cart
+    @When("I click on the cart")
+    public void iClickOnTheCart() {
+        homePage.clickCart();
+    }
+
+    @Then("I should see the cart page")
+    public void iShouldSeeTheCartPage() {
+        CartPage cartPage = new CartPage(driver);
+        Assert.assertTrue("Cart page should be visible", cartPage.isCartPageVisible());
     }
 }

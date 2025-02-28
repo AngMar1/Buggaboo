@@ -20,8 +20,7 @@ public class LoginStepDefinitions {
     @Given("I am on the login page")
     public void i_am_on_the_login_page() {
         WebDriver driver = getDriver();
-        driver.manage().window().setSize(new Dimension(1920, 1080));
-        driver.manage().window().maximize();
+
         driver.get("https://www.bugaboo.com/us-en/login/");
 
         // Initializes page object with the current driver
