@@ -18,3 +18,5 @@ Feature: Cart Page
     And I navigate to the strollers shop page
     When I sort the strollers by most popular
     Then I should see most popular option on dropdown
+
+

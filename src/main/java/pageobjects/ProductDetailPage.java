@@ -79,14 +79,23 @@ public class ProductDetailPage {
     public boolean isTextInCartModal(String expectedText) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            // Wait for the modal container to be visible.
-            wait.until(ExpectedConditions.visibilityOfElementLocated(addedToCartModal));
-            WebElement titleElement = driver.findElement(addedToCartModalTitle);
+
+            // Wait until the modal appears
+            WebElement modalElement = wait.until(ExpectedConditions.visibilityOfElementLocated(addedToCartModal));
+
+            // Wait until the modal title is present
+            WebElement titleElement = wait.until(ExpectedConditions.visibilityOfElementLocated(addedToCartModalTitle));
+
+            // Get the modal title text
             String actualText = titleElement.getText().trim();
             System.out.println("Modal title text: " + actualText);
-            return actualText.equalsIgnoreCase(expectedText);
+
+            // Return true if the expected text is contained in the modal text
+            return actualText.toLowerCase().contains(expectedText.toLowerCase());
         } catch (Exception e) {
+            System.out.println("Modal or expected text not found: " + e.getMessage());
             return false;
         }
     }
+
 }

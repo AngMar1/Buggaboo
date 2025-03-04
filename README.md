@@ -36,14 +36,24 @@ Then I should see most popular option on dropdown
 ```
 
 #### Feature: Login Page
-**Scenario 3: Successful login**
+**Scenario 4: Successful login**
  
 ```gherkin 
 Given I am on the login page
 When I enter my credentials
 Then I should be logged in successfully
 ``` 
-  
+
+#### Feature: Search Functionality
+**Scenario 5: Enable search field and search for a product**
+
+```gherkin
+Given I am on the home page
+When I click on the search icon
+Then the search field should become enabled
+When I type "butterfly rear wheels" in the search field
+Then I should see search results related to "butterfly rear wheels"
+```
   
 ## Tech Stack
 - **Java**: Programming language for writing test scripts.

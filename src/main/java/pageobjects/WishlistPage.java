@@ -12,7 +12,7 @@ public class WishlistPage {
 
     // Locator for the wishlist item
     private By wishlistItem = By.xpath("//div[@class='c-product-tile']");
-    private By wishlistPageHeader = By.xpath("//h1[contains(text(),'Wishlist')]"); // Assuming this is part of the wishlist page
+    private By wishlistPageHeader = By.xpath("//h1[contains(text(),'Your Wishlist')]");
 
     public WishlistPage(WebDriver driver) {
         this.driver = driver;
